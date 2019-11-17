@@ -1,0 +1,7 @@
+.container{
+    display: inline-flex;
+}
+
+body{
+    background-color: darkgrey;
+}
