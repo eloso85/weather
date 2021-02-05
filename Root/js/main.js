@@ -1,6 +1,8 @@
-let luxDate = (input)=>{
 
-  return luxon.DateTime.fromISO(input.replace(" ", "T"))
+
+let luxDate = (input)=>{
+    const test =luxon.DateTime.fromISO(input.replace(" ", "T"))
+  return test.toLocaleString(luxon.DateTime.DATETIME_MED)
 
 
 }
@@ -34,15 +36,16 @@ $("#submit").on("click", function () {
         //console.log(data);
 
         $(".card-title-0").html(`${data.list.map(function(days){
-           
-          console.log(luxDate(days.dt_txt))
-          console.log(days)
-          return `<h5>${luxDate(days.dt_txt)}<h5> + <h4>${days.main.temp}<h4> `
+           var dataDate = luxDate(days.dt_txt)
+          //console.log(luxDate(days.dt_txt))
+          //console.log(days)
+          //console.log(dataDate)
+          return `<h5>${dataDate}<h5> + <h4>${days.main.temp}<h4> `
           
           
         }).join("")}`);
           
-
+       
         // $(".card-title-0").html("<h5>" + "Date" + "<br>" + response.list[0].dt_txt + "</h5>" + "<br>" + "Tempeture: " + response.list[0].main.temp + "<br>" + "Humidity: " + response.list[0].main.humidity);
         // $(".card-title-1").html("<h5>" + "Date" + "<br>" + response.list[10].dt_txt + "</h5>" + "<br>" + "Tempeture: " + response.list[10].main.temp + "<br>" + "Humidity: " + response.list[10].main.humidity);
         // $(".card-title-2").html("<h5>" + "Date" + "<br>" + response.list[20].dt_txt + "</h5>" + "<br>" + "Tempeture: " + response.list[20].main.temp + "<br>" + "Humidity: " + response.list[20].main.humidity);
