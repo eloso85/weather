@@ -1,5 +1,7 @@
+let test2 = luxon.DateTime.fromSeconds(1612559839);
 
-
+console.log(test2)
+//1612559839 1612634400 1612634400 1612807200 1612893600 1612980000 1613066400
 let luxDate = (input)=>{
     const test =luxon.DateTime.fromISO(input.replace(" ", "T"))
   return test.toLocaleString(luxon.DateTime.DATETIME_MED)
@@ -19,7 +21,7 @@ $("#submit").on("click", function () {
     /*var APIKey = "166a433c57516f51dfab1f7edaed8413";*/
     var city = $("#search").val();
     // Here we are building the URL we need to query the database
-    var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + ",us&units=imperial&APPID=166a433c57516f51dfab1f7edaed8413";
+    var queryURL = "https://api.openweathermap.org/data/2.5/forecast/daily?q=" + city + ",&cnt=7&us&units=imperial&APPID=166a433c57516f51dfab1f7edaed8413";
     var queryURL2 = "https://api.openweathermap.org/data/2.5/weather?zip=" + city + ",us&units=imperial&APPID=166a433c57516f51dfab1f7edaed8413";
     // Here we run our AJAX call to the OpenWeatherMap API
     $.ajax({
@@ -33,14 +35,20 @@ $("#submit").on("click", function () {
 
         //console.log(queryURL);
 
-        //console.log(data);
+        console.log(data);
 
-        $(".card-title-0").html(`${data.list.map(function(days){
+        $(".container").html(`${data.list.map(function(days){
            var dataDate = luxDate(days.dt_txt)
           //console.log(luxDate(days.dt_txt))
           //console.log(days)
           //console.log(dataDate)
-          return `<h5>${dataDate}<h5> + <h4>${days.main.temp}<h4> `
+          return`
+          <div class="card text-center" style="width: 25rem;">
+              <div class="card-body">
+                  <h5 class="card-title-0">${dataDate}</h5>
+                    </div>
+                        </div>`
+          // return `<h5>${dataDate}<h5> + <h4>${days.main.temp}<h4> `
           
           
         }).join("")}`);
