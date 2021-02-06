@@ -1,15 +1,30 @@
-let test2 = luxon.DateTime.fromSeconds(1612559839);
+var DateTime = luxon.DateTime
 
-console.log(test2)
-//1612559839 1612634400 1612634400 1612807200 1612893600 1612980000 1613066400
+
+
+var dataDate = new Date(1613066400 * 1000)
+console.log(dataDate.toDateString())
+
+
+
+
+
+//let test2 = luxon.DateTime.fromSeconds(1612559839);
+//1612634400
+
+
+//console.log(test2)
+//1612559839 1612634400 1612634400  1612893600 1612980000 1613066400
 let luxDate = (input)=>{
-    const test =luxon.DateTime.fromISO(input.replace(" ", "T"))
-  return test.toLocaleString(luxon.DateTime.DATETIME_MED)
+    const test = new Date(input * 1000);
+    
+    //const test =luxon.DateTime.fromISO(input.replace(" ", "T"))
+  return test//.toLocaleString(luxon.DateTime.DATETIME_MED)
 
 
 }
 
-console.log(luxDate('2021-02-05 21:00:00'))
+//console.log(luxDate('2021-02-05 21:00:00'))
 
 function test(){
 
@@ -38,14 +53,17 @@ $("#submit").on("click", function () {
         console.log(data);
 
         $(".container").html(`${data.list.map(function(days){
-           var dataDate = luxDate(days.dt_txt)
-          //console.log(luxDate(days.dt_txt))
-          //console.log(days)
-          //console.log(dataDate)
+          console.log(days)
+          console.log(days.temp.day)
+          console.log(days.dt)
+           var dataDate = luxDate(days.dt)
+          // console.log(luxDate(dataDate))
+          
+          console.log(dataDate)
           return`
           <div class="card text-center" style="width: 25rem;">
               <div class="card-body">
-                  <h5 class="card-title-0">${dataDate}</h5>
+                  <h5 class="card-title-0">${dataDate.toDateString()}</h5>
                     </div>
                         </div>`
           // return `<h5>${dataDate}<h5> + <h4>${days.main.temp}<h4> `
@@ -64,24 +82,25 @@ $("#submit").on("click", function () {
         /* $(".temp").text("Temperature (F) " + response.main.temp);*/
 
 
-
+       
       });
-    event.preventDefault();
+      event.preventDefault()
   });
-  $("#submit").on("click", function () {
-    /*var APIKey = "166a433c57516f51dfab1f7edaed8413";*/
-    var city = $("#search").val();
-    // Here we are building the URL we need to query the database
+  ;
+  // $("#submit").on("click", function () {
+  //   /*var APIKey = "166a433c57516f51dfab1f7edaed8413";*/
+  //   var city = $("#search").val();
+  //   // Here we are building the URL we need to query the database
     
-    var queryURL2 = "https://api.openweathermap.org/data/2.5/weather?q=" + city + ",us&units=imperial&APPID=166a433c57516f51dfab1f7edaed8413";
-    // Here we run our AJAX call to the OpenWeatherMap API
-    $.ajax({
-      url: queryURL2,
-      method: "GET"
-    })
-      .then(function (response2) {
-        console.log(response2)
-        console.log(queryURL2)
-        $(".wind").html("<h1>" + response2.name + " Current Weather Details</h1>" + response2.main.temp + "<br>" + response2.weather[0].description); 
-      })
-  })
+  //   var queryURL2 = "https://api.openweathermap.org/data/2.5/weather?q=" + city + ",us&units=imperial&APPID=166a433c57516f51dfab1f7edaed8413";
+  //   // Here we run our AJAX call to the OpenWeatherMap API
+  //   $.ajax({
+  //     url: queryURL2,
+  //     method: "GET"
+  //   })
+  //     .then(function (response2) {
+  //       console.log(response2)
+  //       console.log(queryURL2)
+  //       $(".wind").html("<h1>" + response2.name + " Current Weather Details</h1>" + response2.main.temp + "<br>" + response2.weather[0].description); 
+  //     })
+  // })
