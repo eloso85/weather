@@ -1,9 +1,12 @@
-import { createConnection } from 'mysql';
+require('dotenv').config()
+console.log(process.env.DB_PASS)
+var mysql = require('mysql');
+;
 
-var con = createConnection({
+var con = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "Ast71uSe9ur@",
+    password: process.env.DB_PASS,
     database: "bank"
 });
 
