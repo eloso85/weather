@@ -28,7 +28,7 @@ function successCallback(data){
           .then(response => response.json())
           .then(locData=>{
             console.log(locData)
-            $(".today").html(`<div>${locData.name}${locData.main.temp}</div>`)
+            $(".today").html(`<div>${locData.name}${Math.round(locData.main.temp)}</div>`)
           })
 }
 
@@ -38,7 +38,7 @@ fetch("https://api.openweathermap.org/data/2.5/weather?q=London,us&units=imperia
    .then(response => response.json())
    .then(today=>{
      console.log(today)
-     $(".today").html(`<div>${today.name}${today.main.temp}</div>`)
+     $(".today").html(`<div>${today.name}${Math.round(today.main.temp)}</div>`)
    })
 
 $("#submit").on("click", () => {
@@ -69,7 +69,7 @@ $("#submit").on("click", () => {
    .then(response => response.json())
    .then(today=>{
      console.log(today)
-     $(".today").html(`<div>${today.name}${today.main.temp}</div>`)
+     $(".today").html(`<div>${today.name}${Math.round(today.main.temp)}</div>`)
    })
 })
 
