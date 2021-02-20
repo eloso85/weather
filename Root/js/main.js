@@ -29,24 +29,18 @@ function successCallback(data){
           .then(locData=>{
             console.log(locData)
             
-            $(".today").html(`<div class="card" style="width: 18rem;">
-            <img class="card-img-top" src="http://openweathermap.org/img/wn/${locData.weather[0].icon}@2x.png" alt="Card image cap">
-            <div class="card-body">
-              <h5 class="card-title">Today's Tempeture</h5>
-              <p class="card-text">${locData.name} ${Math.round(locData.main.temp)} </p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-          </div>`)
+            $(".temp").html(`<p>${locData.name} <br/> ${Math.round(locData.main.temp)}&#x2109; </p>`)
           });
 };
 //<div>${locData.name}${Math.round(locData.main.temp)}</div>
+//"http://openweathermap.org/img/wn/${locData.weather[0].icon}@2x.png
 
 
 fetch("https://api.openweathermap.org/data/2.5/weather?q=London,us&units=imperial&APPID=166a433c57516f51dfab1f7edaed8413")
    .then(response => response.json())
    .then(today=>{
      console.log(today)
-     $(".today").html(`<div>${today.name}${Math.round(today.main.temp)}</div>`)
+     $(".temp").html(`<div>${today.name}${Math.round(today.main.temp)}</div>`)
    })
 
 $("#submit").on("click", () => {
@@ -77,7 +71,7 @@ $("#submit").on("click", () => {
    .then(response => response.json())
    .then(today=>{
      console.log(today)
-     $(".today").html(`<div>${today.name}${Math.round(today.main.temp)}</div>`)
+     $(".temp").html(`<div>${today.name}${Math.round(today.main.temp)}</div>`)
    })
 })
 
